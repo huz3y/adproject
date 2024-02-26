@@ -4,14 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Student;
+use App\Models\Department;
+use App\Models\Faculty;
+
 
 class HomeController extends Controller
 {
-    public function home() 
+    public function faculty() 
     {
-        return Student::select('*')->get();
-          where('age','>',30)
-        ->orderBy('id','DESC')
-        ->get();
+        return Faculty::select('*')
+          ->with('departments')
+          ->get();
     }
 }
